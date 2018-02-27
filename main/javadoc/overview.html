@@ -1,0 +1,26 @@
+<html>
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+<p><strong>Boxed Json Library</strong></p>
+<h2 id="easy-access-and-modifications">Easy Access and Modifications</h2>
+<p>Json objects created by this library do not throw exceptions and succeed all operations while
+keeping track of the first error and propagate it through all access/modification methods. So it
+is perfectly valid to access a value nested in a <code>JsonObject</code> without checking for intervening
+types or values and at the end test if the value is valid. This eliminates all the nested <code>if</code>
+blocks.</p>
+<p>Any value can be accessed via the <code>eval(String path)</code> method.</p>
+<pre><code class="java">    BoxedJsObject jsReply = BoxedJson.from(&quot;{&quot;method&quot;:&quot;Runtime.consoleAPICalled&quot;,&quot;params&quot;:{&quot;type&quot;:&quot;warning&quot;,&quot;args&quot;:[{&quot;type&quot;:&quot;string&quot;,&quot;value&quot;:&quot;warning&quot;}],&quot;executionContextId&quot;:30,&quot;timestamp&quot;:1519047166210.763,&quot;stackTrace&quot;:{&quot;callFrames&quot;:[{&quot;functionName&quot;:&quot;&quot;,&quot;scriptId&quot;:&quot;684&quot;,&quot;url&quot;:&quot;&quot;,&quot;lineNumber&quot;:0,&quot;columnNumber&quot;:8}]}}}&quot;);
+    BoxedJsNumber jsExecutionContextId = jsReply.evalJsNumber(&quot;params.executionContextId&quot;);
+    BoxedJsString jsFirstArgType = jsReply.evalJsString(&quot;params.args[0].type&quot;);
+    BoxedJsString jsFirstFunction = jsReply.evalJsString(&quot;params.stackTrace.callFrames[0].functionName&quot;);
+    if (jsExecutionContextId.isValid() &amp;&amp; jsFirstArgType.isValid() &amp;&amp; jsFirstFunction.isValid()) {
+        // change functionName if it is blank to unknown
+        if (jsFirstFunction.getString().isEmpty()) {
+            jsReply.evalSet(&quot;params.stackTrace.callFrames[0].functionName&quot;, &quot;unknown&quot;);
+        }
+    }
+</code></pre>
+</body>
+</html>
