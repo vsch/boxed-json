@@ -7,6 +7,9 @@ extensible.
 This Library is based on the [GlassFish Open Source Reference Implementation], it is released
 under the same dual license as the original [GlassFish License]. Duplicated in this repository.
 
+[![Build status](https://travis-ci.org/vsch/boxed-json.svg?branch=master)](https://travis-ci.org/vsch/boxed-json)
+[![Maven Central status](https://img.shields.io/maven-central/v/com.vladsch.boxed.json/boxed-json.svg)](https://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.vladsch.boxed.json%22)
+
 ## Easy Access and Modifications
 
 Json objects created by this library do not throw exceptions and succeed all operations while
