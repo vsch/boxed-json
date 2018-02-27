@@ -11,9 +11,9 @@
 
     <packaging>pom</packaging>
 
-    <groupId>com.vladsch.boxed.json</groupId>
+    <groupId>com.vladsch.boxed-json</groupId>
     <artifactId>boxed-json</artifactId>
-    <version>0.5.0</version>
+    <version>0.5.1</version>
     <name>Boxed Json</name>
     <description>
         Mutable JSON classes with easy search and manipulation in Java
@@ -187,6 +187,13 @@
             <groupId>org.glassfish</groupId>
             <artifactId>javax.json</artifactId>
             <version>1.0.4</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.jetbrains/annotations -->
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>LATEST</version>
         </dependency>
 
         <dependency>

@@ -8,15 +8,35 @@ This Library is based on the [GlassFish Open Source Reference Implementation], i
 under the same dual license as the original [GlassFish License]. Duplicated in this repository.
 
 [![Build status](https://travis-ci.org/vsch/boxed-json.svg?branch=master)](https://travis-ci.org/vsch/boxed-json)
-[![Maven Central status](https://img.shields.io/maven-central/v/com.vladsch.boxed.json/boxed-json.svg)](https://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.vladsch.boxed.json%22)
+[![Maven Central status](https://img.shields.io/maven-central/v/com.vladsch.boxed-json/boxed-json.svg)](https://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.vladsch.boxed-json%22)
+
+### Requirements
+
+* Java 8 or above
+* The project is on Maven: `com.vladsch.boxed-json`
+* dependencies: 
+  * `org.glassfish:javax.json`
+  * `org.jetbrains.annotations`
+  
+### Quick Start
+
+For Maven:
+
+```xml
+<dependency>
+    <groupId>com.vladsch.boxed-json</groupId>
+    <artifactId>boxed-json</artifactId>
+    <version>LATEST</version>
+</dependency>
+```
 
 ## Easy Access and Modifications
 
 Json objects created by this library do not throw exceptions and succeed all operations while
-keeping track of the first error and propagate it through all access/modification methods. So it
-is perfectly valid to access a value nested in a `JsonObject` without checking for intervening
-types or values and at the end test if the value is valid. This eliminates all the nested `if`
-blocks.
+keeping track of the first error and propagating it through all subsequent access/modification
+methods. It is perfectly valid to access a value nested in a `JsonObject` without checking for
+existence or type of intervening values, only testing at the end if the value is valid. This
+eliminates all the nested `if` blocks.
 
 Any value can be accessed via the `eval(String path)` method.
 

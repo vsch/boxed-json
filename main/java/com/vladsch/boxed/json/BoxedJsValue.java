@@ -3,11 +3,9 @@ package com.vladsch.boxed.json;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import javax.json.*;
+import javax.json.JsonValue;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-
-import static java.lang.Character.isDigit;
 
 /**
  * Implements extended json values used for representing nested searches that are erroneous
