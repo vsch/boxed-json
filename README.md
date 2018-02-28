@@ -195,16 +195,16 @@ Replacing a value meant recreating the whole json with the parts you need replac
 
 Writing a JSON library was not on my radar but it was either this or spend a ton of time writing
 validation if statements and debugging exceptions or worse, resort to using regex to replace
-values.
+values. This was more fun and the result was worth the effort.
 
 ## What's Missing
 
 Tests! 
 
 I moved these classes out of my [Markdown Navigator] plugin for JetBrains IDEs into a separate
-module. Unfortunately, the tests I have for it are in [Kotlin] which is so much more compact and
+module. Unfortunately, the tests I have for it are in [Kotlin] which is much more compact and
 convenient. I have not gotten around to porting them to Java. [IntelliJ IDEA] has a single click
-Java to Kotlin conversion but no reverse option. So it will be a manual effort.
+Java to Kotlin conversion but no reverse option. So it has to be a manual effort.
 
 [GlassFish License]: https://javaee.github.io/glassfish/LICENSE
 [GlassFish Open Source Reference Implementation]: https://javaee.github.io/glassfish/
