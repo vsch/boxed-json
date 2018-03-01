@@ -1,9 +1,6 @@
 package com.vladsch.boxed.json;
 
-import org.jetbrains.annotations.NotNull;
-
 import javax.json.JsonNumber;
-import javax.json.JsonValue;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 

@@ -152,7 +152,8 @@ If the requested intermediate value is missing, it will be created. Arrays will 
 if the index part is empty `[]` or refers to 1 past the last element, 0-based index.
 
 Any errors encountered will result in no modifications being performed. Check the returned value
-for validity with `.isValid()`.
+for validity with `.isValid()`. When chaining `evalSet()` operations all operations after the
+first failure will fail because the return value is will be an invalid JSON value. 
 
 `BoxedJson` class provides static methods for convenient conversions via `of()` to convert
 `JsonValue` instances and common Java types: `int`, `long`, `BigInteger`, `double`,

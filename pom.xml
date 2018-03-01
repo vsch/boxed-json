@@ -3,7 +3,7 @@
 
     <groupId>com.vladsch.boxed-json</groupId>
     <artifactId>boxed-json</artifactId>
-    <version>0.5.2</version>
+    <version>0.5.4</version>
     <name>Boxed Json</name>
     <description>
         Mutable JSON classes with easy search and manipulation in Java
@@ -81,8 +81,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.5.1</version>
                 <configuration>
-                    <source>7</source>
-                    <target>7</target>
+                    <source>8</source>
+                    <target>8</target>
                 </configuration>
             </plugin>
             <plugin>
@@ -193,5 +193,4 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
 </project>

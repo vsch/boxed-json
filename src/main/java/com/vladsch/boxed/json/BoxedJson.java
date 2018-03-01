@@ -434,4 +434,8 @@ public class BoxedJson {
     public static BoxedJsValue asJsBoolean(JsonValue value) { return isBoolean(value) ? boxedOf(value) : asHadNullOrInvalidType(value).asJsLiteral(); }
 
     public static BoxedJsValue asJsNull(JsonValue value) { return isNull(value) ? boxedOf(value) : BoxedJsValue.HAD_INVALID_LITERAL; }
+
+    public static BoxedJsObject of() {
+        return BoxedJson.of(MutableJson.of());
+    }
 }

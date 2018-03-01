@@ -99,4 +99,8 @@ public class MutableJson {
         }
         return jsonValue;
     }
+
+    public static MutableJsObject of() {
+        return new MutableJsObject();
+    }
 }
