@@ -3,7 +3,7 @@
 
     <groupId>com.vladsch.boxed-json</groupId>
     <artifactId>boxed-json</artifactId>
-    <version>0.5.4</version>
+    <version>0.5.6</version>
     <name>Boxed Json</name>
     <description>
         Mutable JSON classes with easy search and manipulation in Java
@@ -183,7 +183,7 @@
         <dependency>
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
-            <version>LATEST</version>
+            <version>15.0</version>
         </dependency>
 
         <dependency>
