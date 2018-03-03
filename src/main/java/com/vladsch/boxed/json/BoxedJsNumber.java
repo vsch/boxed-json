@@ -18,6 +18,8 @@ public interface BoxedJsNumber extends BoxedJsValue, JsonNumber {
     default BigInteger bigIntegerValue(BigInteger defaultValue) { return isValid() ? bigIntegerValue() : defaultValue; }
     default BigInteger bigIntegerValueExact(BigInteger defaultValue) { return isValid() ? bigIntegerValueExact() : defaultValue; }
     default double doubleValue(double defaultValue) { return isValid() ? doubleValue() : defaultValue; }
+    default float floatValue() { return (float) doubleValue(); }
+    default float floatValue(float defaultValue) { return isValid() ? floatValue() : defaultValue; }
     default int intValue(int defaultValue) { return isValid() ? intValue() : defaultValue; }
     default int intValueExact(int defaultValue) { return isValid() ? intValueExact() : defaultValue; }
     default long longValue(long defaultValue) { return isValid() ? longValue() : defaultValue; }

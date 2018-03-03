@@ -103,4 +103,37 @@ public class MutableJson {
     public static MutableJsObject of() {
         return new MutableJsObject();
     }
+
+    public static JsonValue copyOf(JsonValue jsonValue) {
+        if (jsonValue == null) {
+            return JsonValue.NULL;
+        }
+
+        switch (jsonValue.getValueType()) {
+            case ARRAY: {
+                int iMax = ((JsonArray) jsonValue).size();
+                MutableJsArray jsArray = new MutableJsArray(iMax);
+                for (int i = 0; i < iMax; i++) {
+                    jsArray.add(copyOf(((JsonArray) jsonValue).get(i)));
+                }
+                return jsArray;
+            }
+
+            case OBJECT: {
+                int iMax = ((JsonObject) jsonValue).size();
+                MutableJsObject jsObject = new MutableJsObject(iMax);
+                for (String key : ((JsonObject) jsonValue).keySet()) {
+                    jsObject.put(key, copyOf(((JsonObject) jsonValue).get(key)));
+                }
+                return jsObject;
+            }
+
+            case STRING:
+            case NUMBER:
+            case TRUE:
+            case FALSE:
+            case NULL:
+        }
+        return jsonValue;
+    }
 }

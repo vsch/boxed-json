@@ -58,6 +58,7 @@ public class BoxedJson {
     public static BoxedJsValue boxedOf(final boolean jsonValue) {
         return new BoxedJsValueLiteral(jsonValue);
     }
+
     public static BoxedJsNumber boxedOf(final int jsonValue) {
         return new BoxedJsNumberLiteral(JsNumber.of(jsonValue));
     }
@@ -152,6 +153,50 @@ public class BoxedJson {
 
     public static BoxedJsString of(final String jsonValue) {
         return boxedOf(jsonValue);
+    }
+
+    /**
+     * Deep copy of the passed JsonValue to mutable boxed json
+     *
+     * @param jsonValue json value for which to create a deep copy, literal values are return simply wrapped
+     * @return boxed mutable deep copy of jsonValue
+     */
+    public static JsonValue copyOf(JsonValue jsonValue) {
+        if (jsonValue instanceof BoxedJsValue) {
+            // get inner copy and make a copy of it
+            jsonValue = ((BoxedJsValue) jsonValue).jsonValue();
+        }
+
+        if (jsonValue == null) {
+            return JsonValue.NULL;
+        }
+
+        switch (jsonValue.getValueType()) {
+            case ARRAY: {
+                int iMax = ((JsonArray) jsonValue).size();
+                BoxedJsArray jsArray = new BoxedJsArrayImpl(new MutableJsArray(iMax));
+                for (int i = 0; i < iMax; i++) {
+                    jsArray.add(copyOf(((JsonArray) jsonValue).get(i)));
+                }
+                return jsArray;
+            }
+
+            case OBJECT: {
+                int iMax = ((JsonObject) jsonValue).size();
+                BoxedJsObject jsObject = new BoxedJsObjectImpl(new MutableJsObject(iMax));
+                for (String key : ((JsonObject) jsonValue).keySet()) {
+                    jsObject.put(key, copyOf(((JsonObject) jsonValue).get(key)));
+                }
+                return jsObject;
+            }
+
+            case STRING:
+            case NUMBER:
+            case TRUE:
+            case FALSE:
+            case NULL:
+        }
+        return jsonValue;
     }
 
     public static @Nullable Object[] parseEvalPath(final String partPath, final boolean allowEmptyIndex) {

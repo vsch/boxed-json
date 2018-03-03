@@ -50,6 +50,10 @@ public interface BoxedJsValue extends JsonValue {
     default boolean hadMissing() { return this.getBoxedValueType() == BoxedValueType.HAD_MISSING; }
     default boolean hadInvalid() { return this.getBoxedValueType() == BoxedValueType.HAD_INVALID; }
 
+    // if not valid, use default
+    default boolean isTrue(boolean defaultValue) { return getBoxedValueType().getUnboxedValueType() == ValueType.TRUE || (isInvalidJsonValue() && defaultValue); }
+    default boolean isFalse(boolean defaultValue) { return getBoxedValueType().getUnboxedValueType() == ValueType.FALSE || (isInvalidJsonValue() && defaultValue); }
+
     /**
      * Returns the end value of evaluating lookups based on a path of . or [n] separated
      * parts. A dot designates an object key lookup, a [n] an array lookup. Returned value is
@@ -63,14 +67,24 @@ public interface BoxedJsValue extends JsonValue {
     default @NotNull BoxedJsObject evalJsObject(final String path) { return eval(path).asJsObject(); }
     default @NotNull BoxedJsNumber evalJsNumber(final String path) { return eval(path).asJsNumber(); }
     default @NotNull BoxedJsString evalJsString(final String path) { return eval(path).asJsString(); }
-    default @NotNull BoxedJsValue evalJsBoolean(final String path) { return eval(path).asJsString(); }
+    default @NotNull BoxedJsValue evalJsBoolean(final String path) { return eval(path).asJsBoolean(); }
     default int evalInt(final String path) { return eval(path).asJsNumber().intValue(); }
     default long evalLong(final String path) { return eval(path).asJsNumber().longValue(); }
     default @NotNull BigDecimal evalBigDecimal(final String path) { return eval(path).asJsNumber().bigDecimalValue(); }
     default @NotNull BigInteger evalBigInteger(final String path) { return eval(path).asJsNumber().bigIntegerValue(); }
     default double evalDouble(final String path) { return eval(path).asJsNumber().doubleValue(); }
+    default float evalFloat(final String path) { return eval(path).asJsNumber().floatValue(); }
     default @NotNull String evalString(final String path) { return eval(path).asJsString().getString(); }
     default boolean evalBoolean(final String path) { return eval(path).asJsBoolean().isTrue(); }
+    // with defaults
+    default int evalInt(final String path, final int defaultValue) { return eval(path).asJsNumber().intValue(defaultValue); }
+    default long evalLong(final String path, final long defaultValue) { return eval(path).asJsNumber().longValue(defaultValue); }
+    default @NotNull BigDecimal evalBigDecimal(final String path, final BigDecimal defaultValue) { return eval(path).asJsNumber().bigDecimalValue(defaultValue); }
+    default @NotNull BigInteger evalBigInteger(final String path, final BigInteger defaultValue) { return eval(path).asJsNumber().bigIntegerValue(defaultValue); }
+    default double evalDouble(final String path, final double defaultValue) { return eval(path).asJsNumber().doubleValue(defaultValue); }
+    default float evalFloat(final String path, final float defaultValue) { return eval(path).asJsNumber().floatValue(defaultValue); }
+    default @NotNull String evalString(final String path, final String defaultValue) { return eval(path).asJsString().getString(defaultValue); }
+    default boolean evalBoolean(final String path, final boolean defaultValue) { return eval(path).asJsBoolean().isTrue(defaultValue); }
 
     /**
      * Set the end of the path to given value
@@ -95,6 +109,7 @@ public interface BoxedJsValue extends JsonValue {
     default @NotNull BoxedJsValue evalSet(final String path, long value) { return evalSet(path, JsNumber.of(value)).asJsNumber(); }
     default @NotNull BoxedJsValue evalSet(final String path, BigInteger value) { return evalSet(path, JsNumber.of(value)).asJsNumber(); }
     default @NotNull BoxedJsValue evalSet(final String path, double value) { return evalSet(path, JsNumber.of(value)).asJsNumber(); }
+    default @NotNull BoxedJsValue evalSet(final String path, float value) { return evalSet(path, JsNumber.of(value)).asJsNumber(); }
     default @NotNull BoxedJsValue evalSet(final String path, BigDecimal value) { return evalSet(path, JsNumber.of(value)).asJsNumber(); }
     default @NotNull BoxedJsValue evalSet(final String path, String value) { return evalSet(path, JsString.of(value)).asJsString(); }
     default @NotNull BoxedJsValue evalSet(final String path, boolean value) { return evalSet(path, value ? JsonValue.TRUE : JsonValue.FALSE); }

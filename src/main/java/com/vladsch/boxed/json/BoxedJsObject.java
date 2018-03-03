@@ -33,6 +33,7 @@ public interface BoxedJsObject extends BoxedJsValue, JsonObject {
     default @Override @NotNull BoxedJsObject evalSet(final String path, long value) { evalSet(path, JsNumber.of(value)).asJsNumber(); return this; }
     default @Override @NotNull BoxedJsObject evalSet(final String path, BigInteger value) { evalSet(path, JsNumber.of(value)).asJsNumber(); return this; }
     default @Override @NotNull BoxedJsObject evalSet(final String path, double value) { evalSet(path, JsNumber.of(value)).asJsNumber(); return this; }
+    default @Override @NotNull BoxedJsObject evalSet(final String path, float value) { evalSet(path, JsNumber.of(value)).asJsNumber(); return this; }
     default @Override @NotNull BoxedJsObject evalSet(final String path, BigDecimal value) { evalSet(path, JsNumber.of(value)).asJsNumber(); return this; }
     default @Override @NotNull BoxedJsObject evalSet(final String path, String value) { evalSet(path, JsString.of(value)).asJsString(); return this; }
     default @Override @NotNull BoxedJsObject evalSet(final String path, boolean value) { evalSet(path, value ? JsonValue.TRUE : JsonValue.FALSE); return this; }
@@ -80,6 +81,7 @@ public interface BoxedJsObject extends BoxedJsValue, JsonObject {
     default BoxedJsValue put(final String key, long value) { return put(key, JsNumber.of(value)); }
     default BoxedJsValue put(final String key, BigInteger value) { return put(key, JsNumber.of(value)); }
     default BoxedJsValue put(final String key, double value) { return put(key, JsNumber.of(value)); }
+    default BoxedJsValue put(final String key, float value) { return put(key, JsNumber.of(value)); }
     default BoxedJsValue put(final String key, BigDecimal value) { return put(key, JsNumber.of(value)); }
     default BoxedJsValue put(final String key, String value) { return put(key, JsString.of(value)); }
     default BoxedJsValue put(final String key, boolean value) { return put(key, value ? JsonValue.TRUE : JsonValue.FALSE); }

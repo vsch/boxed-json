@@ -162,7 +162,8 @@ first failure will fail because the return value is will be an invalid JSON valu
 
 The resulting json will be a mutable boxed instance which can be modified. For the `of()` If the
 passed in value is already based on the `MutableJson` classes then this instance will be reused.
-If you want a new mutable copy you have to explicitly created via the ``
+If you want a new mutable copy you have to explicitly created it via the
+`MutableJson.copyOf(JsonValue)` to get a deep copy of the `JsonValue`.
 
 If you only want a boxed wrapper of original `JsonValue` GlassFish library implementations use
 the `boxedOf` or `boxedFrom` methods instead.
@@ -171,9 +172,8 @@ One caveat to keep in mind is that the mutable classes will convert their contai
 to mutable on access. Which means that if the value is already mutable, it will be returned
 unmodified. If you make changes to the contents of this returned value, then the parent
 container's copy will reflect these changes. If you don't want the parent container's value to
-be modified, then you need to make a deep copy before making any modifications to it. The
-laziest way to do it, if it is an object, is to convert it to a string and parse it to a new
-JSON value. ie. `MutableJson.from(jsonValue.toString())`
+be modified, then before making any modifications to it, you need to make a deep copy via
+`MutableJson.copyOf()` or `BoxedJson.copyOf()`.
 
 ## Why another JSON Java library 
 

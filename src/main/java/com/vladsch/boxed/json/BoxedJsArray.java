@@ -34,6 +34,7 @@ public interface BoxedJsArray extends BoxedJsValue, JsonArray {
     default BoxedJsValue set(final int index, long value) { return set(index, JsNumber.of(value)); }
     default BoxedJsValue set(final int index, BigInteger value) { return set(index, JsNumber.of(value)); }
     default BoxedJsValue set(final int index, double value) { return set(index, JsNumber.of(value)); }
+    default BoxedJsValue set(final int index, float value) { return set(index, JsNumber.of(value)); }
     default BoxedJsValue set(final int index, BigDecimal value) { return set(index, JsNumber.of(value)); }
     default BoxedJsValue set(final int index, String value) { return set(index, JsString.of(value)); }
     default BoxedJsValue set(final int index, boolean value) { return set(index, value ? JsonValue.TRUE : JsonValue.FALSE); }
@@ -43,6 +44,7 @@ public interface BoxedJsArray extends BoxedJsValue, JsonArray {
     default BoxedJsValue add(final int index, long value) { return set(index, JsNumber.of(value)); }
     default BoxedJsValue add(final int index, BigInteger value) { return set(index, JsNumber.of(value)); }
     default BoxedJsValue add(final int index, double value) { return set(index, JsNumber.of(value)); }
+    default BoxedJsValue add(final int index, float value) { return set(index, JsNumber.of(value)); }
     default BoxedJsValue add(final int index, BigDecimal value) { return set(index, JsNumber.of(value)); }
     default BoxedJsValue add(final int index, String value) { return set(index, JsString.of(value)); }
     default BoxedJsValue add(final int index, boolean value) { return set(index, value ? JsonValue.TRUE : JsonValue.FALSE); }
@@ -53,6 +55,7 @@ public interface BoxedJsArray extends BoxedJsValue, JsonArray {
     default @Override @NotNull BoxedJsArray evalSet(final String path, long value) { evalSet(path, JsNumber.of(value)).asJsNumber(); return this; }
     default @Override @NotNull BoxedJsArray evalSet(final String path, BigInteger value) { evalSet(path, JsNumber.of(value)).asJsNumber(); return this; }
     default @Override @NotNull BoxedJsArray evalSet(final String path, double value) { evalSet(path, JsNumber.of(value)).asJsNumber(); return this; }
+    default @Override @NotNull BoxedJsArray evalSet(final String path, float value) { evalSet(path, JsNumber.of(value)).asJsNumber(); return this; }
     default @Override @NotNull BoxedJsArray evalSet(final String path, BigDecimal value) { evalSet(path, JsNumber.of(value)).asJsNumber(); return this; }
     default @Override @NotNull BoxedJsArray evalSet(final String path, String value) { evalSet(path, JsString.of(value)).asJsString(); return this; }
     default @Override @NotNull BoxedJsArray evalSet(final String path, boolean value) { evalSet(path, value ? JsonValue.TRUE : JsonValue.FALSE); return this; }
