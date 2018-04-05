@@ -18,7 +18,7 @@ public class MutableJsArray extends AbstractList<JsonValue> implements JsonArray
         myList = new MutableJsList(initialSize);
     }
 
-    MutableJsArray(JsonArray other) {
+    public MutableJsArray(JsonArray other) {
         myList = new MutableJsList(other);
     }
 

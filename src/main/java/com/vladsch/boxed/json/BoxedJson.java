@@ -290,17 +290,18 @@ public class BoxedJson {
      * parts. A dot designates an object key lookup, a [n] an array lookup. Returned value is
      * either the last looked up element or
      *
+     * @param jsValue object to query
      * @param path path to evaluate
      * @return value at path (check for validity)
      */
-    public static @NotNull BoxedJsValue eval(BoxedJsValue value, final String path) {
+    public static @NotNull BoxedJsValue eval(BoxedJsValue jsValue, final String path) {
         Object[] parts = parseEvalPath(path, false);
         if (parts == null)
             throw new IllegalArgumentException("Invalid path argument");
-        else if (value.isLiteral())
-            return asHadNullOrInvalidType(value).asJsLiteral();
+        else if (jsValue.isLiteral())
+            return asHadNullOrInvalidType(jsValue).asJsLiteral();
 
-        BoxedJsValue element = value;
+        BoxedJsValue element = jsValue;
 
         int iMax = parts.length;
         for (int i = 0; i < iMax; i++) {
@@ -339,6 +340,7 @@ public class BoxedJson {
      * '{ "name": "abc", "arr": [1,2,3] }'.evalSet("result.value.set[]", JsonValue.NULL) will result in
      * '{ "name": "abc", "arr": [1,2,3], "result" : { "value": { "set":[ null ] } } }'
      *
+     * @param jsValue object to query and set
      * @param path      p
      * @param jsonValue value to set
      * @return result of setting the final part, array returns value, object returns value for new parts, or old value at part.

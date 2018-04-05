@@ -3,9 +3,14 @@
 [TOC levels=3,6]: # "Version History"
 
 ### Version History
+- [0.5.10](#0510)
 - [0.5.8](#058)
 - [0.5.6](#056)
 
+
+### 0.5.10
+
+* Fix: add missing public keyword on `MutableJsArray(JsonArray)` constructor
 
 ### 0.5.8
 
