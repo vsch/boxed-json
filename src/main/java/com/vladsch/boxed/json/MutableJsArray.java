@@ -5,6 +5,7 @@ import java.io.StringWriter;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.AbstractList;
+import java.util.Collection;
 import java.util.List;
 
 public class MutableJsArray extends AbstractList<JsonValue> implements JsonArray, MutableJsValue {
@@ -19,6 +20,10 @@ public class MutableJsArray extends AbstractList<JsonValue> implements JsonArray
     }
 
     public MutableJsArray(JsonArray other) {
+        myList = new MutableJsList(other);
+    }
+
+    public MutableJsArray(final List<? extends JsonValue> other) {
         myList = new MutableJsList(other);
     }
 
