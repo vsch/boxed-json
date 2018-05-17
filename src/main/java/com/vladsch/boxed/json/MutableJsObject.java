@@ -7,6 +7,7 @@ import java.io.StringWriter;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.AbstractMap;
+import java.util.Map;
 import java.util.Set;
 
 public class MutableJsObject extends AbstractMap<String, JsonValue> implements JsonObject, MutableJsValue {
@@ -22,6 +23,10 @@ public class MutableJsObject extends AbstractMap<String, JsonValue> implements J
 
     public MutableJsObject(final JsonObject jsonObject) {
         myMap = new MutableJsMap<>(jsonObject);
+    }
+
+    public MutableJsObject(final Map<String, JsonValue> jsonMap) {
+        myMap = new MutableJsMap<>(jsonMap);
     }
 
     public JsonArray getJsonArray(String name) {
@@ -118,12 +123,19 @@ public class MutableJsObject extends AbstractMap<String, JsonValue> implements J
     }
 
     public JsonValue put(final String key, int value) { return put(key, JsNumber.of(value)); }
+
     public JsonValue put(final String key, long value) { return put(key, JsNumber.of(value)); }
+
     public JsonValue put(final String key, BigInteger value) { return put(key, JsNumber.of(value)); }
+
     public JsonValue put(final String key, double value) { return put(key, JsNumber.of(value)); }
+
     public JsonValue put(final String key, BigDecimal value) { return put(key, JsNumber.of(value)); }
+
     public JsonValue put(final String key, String value) { return put(key, JsString.of(value)); }
+
     public JsonValue put(final String key, boolean value) { return put(key, value ? JsonValue.TRUE : JsonValue.FALSE); }
+
     public JsonValue putNull(final String key) { return put(key, JsonValue.NULL); }
 
     @Override
