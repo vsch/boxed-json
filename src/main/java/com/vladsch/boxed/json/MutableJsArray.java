@@ -141,4 +141,13 @@ public class MutableJsArray extends AbstractList<JsonValue> implements JsonArray
     public JsonValue add(final int index, String value) { return set(index, JsString.of(value)); }
     public JsonValue add(final int index, boolean value) { return set(index, value ? JsonValue.TRUE : JsonValue.FALSE); }
     public JsonValue addNull(final int index) { return set(index, JsonValue.NULL); }
+
+    public JsonValue add(int value) { myList.add(JsNumber.of(value)); return this; }
+    public JsonValue add(long value) { myList.add(JsNumber.of(value)); return this; }
+    public JsonValue add(BigInteger value) { myList.add(JsNumber.of(value)); return this; }
+    public JsonValue add(double value) { myList.add(JsNumber.of(value)); return this; }
+    public JsonValue add(BigDecimal value) { myList.add(JsNumber.of(value)); return this; }
+    public JsonValue add(String value) { myList.add(JsString.of(value)); return this; }
+    public JsonValue add(boolean value) { myList.add(value ? JsonValue.TRUE : JsonValue.FALSE); return this; }
+    public JsonValue addNull() { myList.add(JsonValue.NULL); return this; }
 }
