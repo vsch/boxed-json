@@ -3,6 +3,7 @@
 [TOC levels=3,6]: # "Version History"
 
 ### Version History
+- [0.5.18](#0518)
 - [0.5.16](#0516)
 - [0.5.14](#0514)
 - [0.5.12](#0512)
@@ -11,10 +12,14 @@
 - [0.5.6](#056)
 
 
+### 0.5.18
+
+* Fix: bump up javax/json to 1.1.4
+
 ### 0.5.16
 
 * Fix: add missing MutableJsArray `add()` by Java type.
-*
+
 ### 0.5.14
 
 * Fix: add constructor for `Map<String, JsonValue>` to `MutableJsObject()`
