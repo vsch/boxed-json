@@ -3,6 +3,7 @@
 [TOC levels=3,6]: # "Version History"
 
 ### Version History
+- [0.5.20](#0520)
 - [0.5.18](#0518)
 - [0.5.16](#0516)
 - [0.5.14](#0514)
@@ -11,6 +12,11 @@
 - [0.5.8](#058)
 - [0.5.6](#056)
 
+
+### 0.5.20
+
+* Fix: substitute `JsonValue.NULL` for `null` passed to `MutableJsArray` set item and
+  `MutableJsObject` put item variants
 
 ### 0.5.18
 

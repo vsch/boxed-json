@@ -126,13 +126,13 @@ public class MutableJsObject extends AbstractMap<String, JsonValue> implements J
 
     public JsonValue put(final String key, long value) { return put(key, JsNumber.of(value)); }
 
-    public JsonValue put(final String key, BigInteger value) { return put(key, JsNumber.of(value)); }
+    public JsonValue put(final String key, BigInteger value) { return put(key,  value == null ? JsonValue.NULL: JsNumber.of(value)); }
 
     public JsonValue put(final String key, double value) { return put(key, JsNumber.of(value)); }
 
-    public JsonValue put(final String key, BigDecimal value) { return put(key, JsNumber.of(value)); }
+    public JsonValue put(final String key, BigDecimal value) { return put(key,  value == null ? JsonValue.NULL: JsNumber.of(value)); }
 
-    public JsonValue put(final String key, String value) { return put(key, JsString.of(value)); }
+    public JsonValue put(final String key, String value) { return put(key,  value == null ? JsonValue.NULL: JsString.of(value)); }
 
     public JsonValue put(final String key, boolean value) { return put(key, value ? JsonValue.TRUE : JsonValue.FALSE); }
 
