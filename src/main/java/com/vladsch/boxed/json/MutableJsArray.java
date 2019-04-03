@@ -1,11 +1,16 @@
 package com.vladsch.boxed.json;
 
-import javax.json.*;
+import javax.json.Json;
+import javax.json.JsonArray;
+import javax.json.JsonNumber;
+import javax.json.JsonObject;
+import javax.json.JsonString;
+import javax.json.JsonValue;
+import javax.json.JsonWriter;
 import java.io.StringWriter;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.AbstractList;
-import java.util.Collection;
 import java.util.List;
 
 public class MutableJsArray extends AbstractList<JsonValue> implements JsonArray, MutableJsValue {
@@ -110,6 +115,13 @@ public class MutableJsArray extends AbstractList<JsonValue> implements JsonArray
     public String toString() {
         StringWriter sw = new StringWriter();
         JsonWriter jw = Json.createWriter(sw);
+        // replace null with JsonValue.NULL
+        int iMax = myList.size();
+        for (int i = 0; i < iMax; i++) {
+            if (myList.get(i) == null) {
+                myList.set(i, JsonValue.NULL);
+            }
+        }
         jw.writeArray(this);
         jw.close();
         return sw.toString();
@@ -120,34 +132,96 @@ public class MutableJsArray extends AbstractList<JsonValue> implements JsonArray
     @Override
     public void add(final int index, final JsonValue element) {myList.add(index, element);}
 
-    public JsonValue set(final int index, final JsonValue element) {return myList.set(index, element);}
+    public JsonValue set(final int index, final JsonValue element) {
+        return myList.set(index, element == null ? JsonValue.NULL : element);
+    }
 
     public boolean add(final JsonValue o) {return myList.add(o);}
 
     public JsonValue set(final int index, int value) { return set(index, JsNumber.of(value)); }
+
     public JsonValue set(final int index, long value) { return set(index, JsNumber.of(value)); }
-    public JsonValue set(final int index, BigInteger value) { return set(index,  value == null ? JsonValue.NULL: JsNumber.of(value)); }
+
+    public JsonValue set(final int index, BigInteger value) { return set(index, JsNumber.of(value)); }
+
     public JsonValue set(final int index, double value) { return set(index, JsNumber.of(value)); }
-    public JsonValue set(final int index, BigDecimal value) { return set(index,  value == null ? JsonValue.NULL: JsNumber.of(value)); }
-    public JsonValue set(final int index, String value) { return set(index,  value == null ? JsonValue.NULL: JsString.of(value)); }
+
+    public JsonValue set(final int index, BigDecimal value) { return set(index, JsNumber.of(value)); }
+
+    public JsonValue set(final int index, String value) { return set(index, JsString.of(value)); }
+
     public JsonValue set(final int index, boolean value) { return set(index, value ? JsonValue.TRUE : JsonValue.FALSE); }
+
     public JsonValue setNull(final int index) { return set(index, JsonValue.NULL); }
 
     public JsonValue add(final int index, int value) { return set(index, JsNumber.of(value)); }
+
     public JsonValue add(final int index, long value) { return set(index, JsNumber.of(value)); }
-    public JsonValue add(final int index, BigInteger value) { return set(index,  value == null ? JsonValue.NULL: JsNumber.of(value)); }
+
+    public JsonValue add(final int index, BigInteger value) { return set(index, JsNumber.of(value)); }
+
     public JsonValue add(final int index, double value) { return set(index, JsNumber.of(value)); }
-    public JsonValue add(final int index, BigDecimal value) { return set(index,  value == null ? JsonValue.NULL: JsNumber.of(value)); }
-    public JsonValue add(final int index, String value) { return set(index,  value == null ? JsonValue.NULL: JsString.of(value)); }
+
+    public JsonValue add(final int index, BigDecimal value) { return set(index, JsNumber.of(value)); }
+
+    public JsonValue add(final int index, String value) { return set(index, JsString.of(value)); }
+
     public JsonValue add(final int index, boolean value) { return set(index, value ? JsonValue.TRUE : JsonValue.FALSE); }
+
     public JsonValue addNull(final int index) { return set(index, JsonValue.NULL); }
 
-    public JsonValue add(int value) { myList.add(JsNumber.of(value)); return this; }
-    public JsonValue add(long value) { myList.add(JsNumber.of(value)); return this; }
-    public JsonValue add(BigInteger value) { myList.add( value == null ? JsonValue.NULL: JsNumber.of(value)); return this; }
-    public JsonValue add(double value) { myList.add(JsNumber.of(value)); return this; }
-    public JsonValue add(BigDecimal value) { myList.add( value == null ? JsonValue.NULL: JsNumber.of(value)); return this; }
-    public JsonValue add(String value) { myList.add( value == null ? JsonValue.NULL: JsString.of(value)); return this; }
-    public JsonValue add(boolean value) { myList.add(value ? JsonValue.TRUE : JsonValue.FALSE); return this; }
-    public JsonValue addNull() { myList.add(JsonValue.NULL); return this; }
+    public JsonValue add(int value) {
+        myList.add(JsNumber.of(value));
+        return this;
+    }
+
+    public JsonValue add(long value) {
+        myList.add(JsNumber.of(value));
+        return this;
+    }
+
+    public JsonValue add(double value) {
+        myList.add(JsNumber.of(value));
+        return this;
+    }
+
+    public JsonValue add(Integer value) {
+        myList.add(value == null ? JsonValue.NULL : JsNumber.of(value));
+        return this;
+    }
+
+    public JsonValue add(Long value) {
+        myList.add(value == null ? JsonValue.NULL : JsNumber.of(value));
+        return this;
+    }
+
+    public JsonValue add(Double value) {
+        myList.add(value == null ? JsonValue.NULL : JsNumber.of(value));
+        return this;
+    }
+
+    public JsonValue add(BigInteger value) {
+        myList.add(value == null ? JsonValue.NULL : JsNumber.of(value));
+        return this;
+    }
+
+    public JsonValue add(BigDecimal value) {
+        myList.add(value == null ? JsonValue.NULL : JsNumber.of(value));
+        return this;
+    }
+
+    public JsonValue add(String value) {
+        myList.add(value == null ? JsonValue.NULL : JsString.of(value));
+        return this;
+    }
+
+    public JsonValue add(boolean value) {
+        myList.add(value ? JsonValue.TRUE : JsonValue.FALSE);
+        return this;
+    }
+
+    public JsonValue addNull() {
+        myList.add(JsonValue.NULL);
+        return this;
+    }
 }

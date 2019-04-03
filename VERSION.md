@@ -3,6 +3,7 @@
 [TOC levels=3,6]: # "Version History"
 
 ### Version History
+- [0.5.22](#0522)
 - [0.5.20](#0520)
 - [0.5.18](#0518)
 - [0.5.16](#0516)
@@ -12,6 +13,11 @@
 - [0.5.8](#058)
 - [0.5.6](#056)
 
+
+### 0.5.22
+
+* Fix: add `null` to `JsonValue.NULL` replacement for `MutableJsArray` and `MutableJsObject`
+  `toString()` calls. 
 
 ### 0.5.20
 

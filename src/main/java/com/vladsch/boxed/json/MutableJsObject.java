@@ -107,6 +107,12 @@ public class MutableJsObject extends AbstractMap<String, JsonValue> implements J
     public String toString() {
         StringWriter sw = new StringWriter();
         JsonWriter jw = Json.createWriter(sw);
+        // replace null with JsonValue.NULL
+        for (Map.Entry<String, JsonValue> entry : myMap.entrySet()) {
+            if (entry.getValue() == null) {
+                entry.setValue(JsonValue.NULL);
+            }
+        }
         jw.write(this);
         jw.close();
         return sw.toString();
@@ -119,20 +125,20 @@ public class MutableJsObject extends AbstractMap<String, JsonValue> implements J
 
     @Override
     public JsonValue put(final String key, final JsonValue value) {
-        return myMap.put(key, value);
+        return myMap.put(key, value == null ? JsonValue.NULL:value);
     }
 
     public JsonValue put(final String key, int value) { return put(key, JsNumber.of(value)); }
 
     public JsonValue put(final String key, long value) { return put(key, JsNumber.of(value)); }
 
-    public JsonValue put(final String key, BigInteger value) { return put(key,  value == null ? JsonValue.NULL: JsNumber.of(value)); }
+    public JsonValue put(final String key, BigInteger value) { return put(key,  JsNumber.of(value)); }
 
     public JsonValue put(final String key, double value) { return put(key, JsNumber.of(value)); }
 
-    public JsonValue put(final String key, BigDecimal value) { return put(key,  value == null ? JsonValue.NULL: JsNumber.of(value)); }
+    public JsonValue put(final String key, BigDecimal value) { return put(key,  JsNumber.of(value)); }
 
-    public JsonValue put(final String key, String value) { return put(key,  value == null ? JsonValue.NULL: JsString.of(value)); }
+    public JsonValue put(final String key, String value) { return put(key,  JsString.of(value)); }
 
     public JsonValue put(final String key, boolean value) { return put(key, value ? JsonValue.TRUE : JsonValue.FALSE); }
 
