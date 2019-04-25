@@ -19,7 +19,8 @@
 
 * Fix: add deep `null` to `JsonValue.NULL` replacement for `MutableJsArray` and
   `MutableJsObject` `toString()` calls to eliminate null pointer exceptions on `toString()`.
-* Add:
+* Add: `MutableJsObject.replaceAllToMutable()` to perform deep null to JsonValue.NULL and
+  JsonObject/JsonArray to mutable counterparts.
 
 ### 0.5.22
 
