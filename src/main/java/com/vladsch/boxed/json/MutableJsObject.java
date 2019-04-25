@@ -2,7 +2,13 @@ package com.vladsch.boxed.json;
 
 import org.jetbrains.annotations.NotNull;
 
-import javax.json.*;
+import javax.json.Json;
+import javax.json.JsonArray;
+import javax.json.JsonNumber;
+import javax.json.JsonObject;
+import javax.json.JsonString;
+import javax.json.JsonValue;
+import javax.json.JsonWriter;
 import java.io.StringWriter;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -104,15 +110,29 @@ public class MutableJsObject extends AbstractMap<String, JsonValue> implements J
         return myMap.entrySet();
     }
 
+    public void replaceAllToMutable() {
+        // replace null with JsonValue.NULL
+        for (Map.Entry<String, JsonValue> entry : myMap.entrySet()) {
+            JsonValue value = entry.getValue();
+            if (value == null) {
+                entry.setValue(JsonValue.NULL);
+            } else if (value instanceof JsonArray && !(value instanceof MutableJsArray)) {
+                MutableJsArray jsArray = new MutableJsArray((JsonArray) value);
+                jsArray.replaceAllToMutable();
+                entry.setValue(jsArray);
+            } else if (value instanceof JsonObject && !(value instanceof MutableJsObject)) {
+                MutableJsObject jsObject = new MutableJsObject((JsonObject) value);
+                jsObject.replaceAllToMutable();
+                entry.setValue(jsObject);
+            }
+        }
+    }
+
     public String toString() {
         StringWriter sw = new StringWriter();
         JsonWriter jw = Json.createWriter(sw);
         // replace null with JsonValue.NULL
-        for (Map.Entry<String, JsonValue> entry : myMap.entrySet()) {
-            if (entry.getValue() == null) {
-                entry.setValue(JsonValue.NULL);
-            }
-        }
+        replaceAllToMutable();
         jw.write(this);
         jw.close();
         return sw.toString();
@@ -125,20 +145,20 @@ public class MutableJsObject extends AbstractMap<String, JsonValue> implements J
 
     @Override
     public JsonValue put(final String key, final JsonValue value) {
-        return myMap.put(key, value == null ? JsonValue.NULL:value);
+        return myMap.put(key, value == null ? JsonValue.NULL : value);
     }
 
     public JsonValue put(final String key, int value) { return put(key, JsNumber.of(value)); }
 
     public JsonValue put(final String key, long value) { return put(key, JsNumber.of(value)); }
 
-    public JsonValue put(final String key, BigInteger value) { return put(key,  JsNumber.of(value)); }
+    public JsonValue put(final String key, BigInteger value) { return put(key, JsNumber.of(value)); }
 
     public JsonValue put(final String key, double value) { return put(key, JsNumber.of(value)); }
 
-    public JsonValue put(final String key, BigDecimal value) { return put(key,  JsNumber.of(value)); }
+    public JsonValue put(final String key, BigDecimal value) { return put(key, JsNumber.of(value)); }
 
-    public JsonValue put(final String key, String value) { return put(key,  JsString.of(value)); }
+    public JsonValue put(final String key, String value) { return put(key, JsString.of(value)); }
 
     public JsonValue put(final String key, boolean value) { return put(key, value ? JsonValue.TRUE : JsonValue.FALSE); }
 

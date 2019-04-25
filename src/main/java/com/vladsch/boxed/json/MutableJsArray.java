@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.AbstractList;
 import java.util.List;
+import java.util.Map;
 
 public class MutableJsArray extends AbstractList<JsonValue> implements JsonArray, MutableJsValue {
     private final MutableJsList myList;
@@ -26,6 +27,7 @@ public class MutableJsArray extends AbstractList<JsonValue> implements JsonArray
 
     public MutableJsArray(JsonArray other) {
         myList = new MutableJsList(other);
+
     }
 
     public MutableJsArray(final List<? extends JsonValue> other) {
@@ -112,16 +114,30 @@ public class MutableJsArray extends AbstractList<JsonValue> implements JsonArray
         return ValueType.ARRAY;
     }
 
+    public void replaceAllToMutable() {
+        // replace null with JsonValue.NULL
+        int iMax = myList.size();
+        for (int i = 0; i < iMax; i++) {
+            JsonValue value = myList.get(i);
+            if (value == null) {
+                myList.set(i, JsonValue.NULL);
+            } else if (value instanceof JsonArray && !(value instanceof MutableJsArray)) {
+                MutableJsArray jsArray = new MutableJsArray((JsonArray) value);
+                jsArray.replaceAllToMutable();
+                myList.set(i, jsArray);
+            } else if (value instanceof JsonObject && !(value instanceof MutableJsObject)) {
+                MutableJsObject jsObject = new MutableJsObject((JsonObject) value);
+                jsObject.replaceAllToMutable();
+                myList.set(i, jsObject);
+            }
+        }
+    }
+
     public String toString() {
         StringWriter sw = new StringWriter();
         JsonWriter jw = Json.createWriter(sw);
         // replace null with JsonValue.NULL
-        int iMax = myList.size();
-        for (int i = 0; i < iMax; i++) {
-            if (myList.get(i) == null) {
-                myList.set(i, JsonValue.NULL);
-            }
-        }
+        replaceAllToMutable();
         jw.writeArray(this);
         jw.close();
         return sw.toString();
