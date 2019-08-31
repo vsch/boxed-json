@@ -16,6 +16,7 @@ import java.math.BigInteger;
  * HAD_INVALID  : somewhere along the path a value of the wrong type was encountered, class cast exception equivalent
  */
 public interface BoxedJsArray extends BoxedJsValue, JsonArray {
+    // @formatter:off
     @Override BoxedJsObject getJsonObject(int value);
     @Override BoxedJsArray getJsonArray(int value);
     @Override BoxedJsNumber getJsonNumber(int value);
@@ -40,15 +41,25 @@ public interface BoxedJsArray extends BoxedJsValue, JsonArray {
     default BoxedJsValue set(final int index, boolean value) { return set(index, value ? JsonValue.TRUE : JsonValue.FALSE); }
     default BoxedJsValue setNull(final int index) { return set(index, JsonValue.NULL); }
 
-    default BoxedJsValue add(final int index, int value) { return set(index, JsNumber.of(value)); }
-    default BoxedJsValue add(final int index, long value) { return set(index, JsNumber.of(value)); }
-    default BoxedJsValue add(final int index, BigInteger value) { return set(index, JsNumber.of(value)); }
-    default BoxedJsValue add(final int index, double value) { return set(index, JsNumber.of(value)); }
-    default BoxedJsValue add(final int index, float value) { return set(index, JsNumber.of(value)); }
-    default BoxedJsValue add(final int index, BigDecimal value) { return set(index, JsNumber.of(value)); }
-    default BoxedJsValue add(final int index, String value) { return set(index, JsString.of(value)); }
-    default BoxedJsValue add(final int index, boolean value) { return set(index, value ? JsonValue.TRUE : JsonValue.FALSE); }
-    default BoxedJsValue addNull(final int index) { return set(index, JsonValue.NULL); }
+    default void add(final int index, int value) { add(index, JsNumber.of(value)); }
+    default void add(final int index, long value) { add(index, JsNumber.of(value)); }
+    default void add(final int index, BigInteger value) { add(index, JsNumber.of(value)); }
+    default void add(final int index, double value) { add(index, JsNumber.of(value)); }
+    default void add(final int index, float value) { add(index, JsNumber.of(value)); }
+    default void add(final int index, BigDecimal value) { add(index, JsNumber.of(value)); }
+    default void add(final int index, String value) { add(index, JsString.of(value)); }
+    default void add(final int index, boolean value) { add(index, value ? JsonValue.TRUE : JsonValue.FALSE); }
+    default void addNull(final int index) { add(index, JsonValue.NULL); }
+
+    default void add(int value) { add(JsNumber.of(value)); }
+    default void add(long value) { add(JsNumber.of(value)); }
+    default void add(BigInteger value) { add(JsNumber.of(value)); }
+    default void add(double value) { add(JsNumber.of(value)); }
+    default void add(float value) { add(JsNumber.of(value)); }
+    default void add(BigDecimal value) { add(JsNumber.of(value)); }
+    default void add(String value) { add(JsString.of(value)); }
+    default void add(boolean value) { add(value ? JsonValue.TRUE : JsonValue.FALSE); }
+    default void addNull() { add(JsonValue.NULL); }
 
     default @Override @NotNull BoxedJsArray evalSet(final String path, JsonValue value) { BoxedJson.evalSet(this, path, value); return this; }
     default @Override @NotNull BoxedJsArray evalSet(final String path, int value) { evalSet(path, JsNumber.of(value)).asJsNumber(); return this; }
@@ -62,5 +73,5 @@ public interface BoxedJsArray extends BoxedJsValue, JsonArray {
     default @Override @NotNull BoxedJsArray evalSetTrue(final String path) { evalSet(path, true); return this; }
     default @Override @NotNull BoxedJsArray evalSetFalse(final String path) { evalSet(path, false); return this; }
     default @Override @NotNull BoxedJsArray evalSetNull(final String path) { evalSet(path, JsonValue.NULL); return this; }
-
+    // @formatter:on
 }
