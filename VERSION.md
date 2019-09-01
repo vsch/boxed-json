@@ -3,6 +3,7 @@
 [TOC levels=3,6]: # "Version History"
 
 ### Version History
+- [0.5.26](#0526)
 - [0.5.24](#0524)
 - [0.5.22](#0522)
 - [0.5.20](#0520)
@@ -14,6 +15,14 @@
 - [0.5.8](#058)
 - [0.5.6](#056)
 
+
+### 0.5.26
+
+* Fix: `MutableJsArray` `add(int, *)` versions of methods to use `add(int,JsValue)` instead of
+  `set(int,JsValue)`
+* Fix: `BoxedJsArray` `add(int, *)` versions of methods to use `add(int,JsValue)` instead of
+  `set(int,JsValue)`
+* Add: `add()` methods to `BoxedJsArray`
 
 ### 0.5.24
 
