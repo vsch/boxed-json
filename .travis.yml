@@ -4,7 +4,7 @@ sudo: required
 install: true
 
 jdk:
-  - oraclejdk9
+  - oraclejdk8
 
 env:
   - TEST=java
