@@ -3,6 +3,7 @@
 [TOC levels=3,6]: # "Version History"
 
 ### Version History
+- [0.5.28](#0528)
 - [0.5.26](#0526)
 - [0.5.24](#0524)
 - [0.5.22](#0522)
@@ -14,6 +15,14 @@
 - [0.5.10](#0510)
 - [0.5.8](#058)
 - [0.5.6](#056)
+
+
+### 0.5.28
+
+* Add: `BoxedJson.objectFrom(...)` and `BoxedJson.arrayFrom(...)`
+* Add: `MutableJson.objectFrom(...)` and `MutableJson.arrayFrom(...)`
+* Deprecate: `BoxedJson.from(...)` in favour of `objectFrom(...)`
+* Deprecate: `MutableJson.from(...)` in favour of `objectFrom(...)`
 
 
 ### 0.5.26
@@ -74,4 +83,6 @@
 ### 0.5.6
 
 * First working maven version
+
+[BoxedJson]: #boxedjson
 

@@ -95,16 +95,43 @@ public class BoxedJson {
         return json == null ? BoxedJsObject.HAD_NULL_OBJECT : boxedFrom(new StringReader(json));
     }
 
+    @Deprecated
     public static BoxedJsObject from(final @NotNull Reader json) {
-        return boxedOf(MutableJson.from(json));
+        return objectFrom(json);
     }
 
+    @Deprecated
     public static BoxedJsObject from(final @NotNull InputStream json) {
-        return boxedOf(MutableJson.from(json));
+        return objectFrom(json);
     }
 
+    @Deprecated
     public static BoxedJsObject from(final @Nullable String json) {
-        return boxedOf(json == null ? BoxedJsObject.HAD_NULL_OBJECT : MutableJson.from(json));
+        return objectFrom(json);
+    }
+
+    public static BoxedJsObject objectFrom(final @NotNull Reader json) {
+        return boxedOf(MutableJson.objectFrom(json));
+    }
+
+    public static BoxedJsObject objectFrom(final @NotNull InputStream json) {
+        return boxedOf(MutableJson.objectFrom(json));
+    }
+
+    public static BoxedJsObject objectFrom(final @Nullable String json) {
+        return boxedOf(json == null ? BoxedJsObject.HAD_NULL_OBJECT : MutableJson.objectFrom(json));
+    }
+
+    public static BoxedJsArray arrayFrom(final @NotNull Reader json) {
+        return boxedOf(MutableJson.arrayFrom(json));
+    }
+
+    public static BoxedJsArray arrayFrom(final @NotNull InputStream json) {
+        return boxedOf(MutableJson.arrayFrom(json));
+    }
+
+    public static BoxedJsArray arrayFrom(final @Nullable String json) {
+        return boxedOf(json == null ? BoxedJsArray.HAD_NULL_ARRAY : MutableJson.arrayFrom(json));
     }
 
     public static BoxedJsValue of(JsonValue jsonValue) {

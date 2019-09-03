@@ -15,24 +15,55 @@ import java.util.List;
 import java.util.Map;
 
 public class MutableJson {
+    @Deprecated
     public static MutableJsObject from(final @NotNull Reader reader) {
+        return objectFrom(reader);
+    }
+
+    /**
+     * @param reader reader
+     * @return mutable js object
+     */
+    public static MutableJsObject objectFrom(final @NotNull Reader reader) {
         return of(Json.createReader(reader).readObject());
     }
 
+    public static MutableJsArray arrayFrom(final @NotNull Reader reader) {
+        return of(Json.createReader(reader).readArray());
+    }
+
+    @Deprecated
     public static MutableJsObject from(final @NotNull InputStream inputStream) {
+        return objectFrom(inputStream);
+    }
+
+    public static MutableJsObject objectFrom(final @NotNull InputStream inputStream) {
         return of(Json.createReader(inputStream).readObject());
     }
 
+    public static MutableJsArray arrayFrom(final @NotNull InputStream inputStream) {
+        return of(Json.createReader(inputStream).readArray());
+    }
+
+    @Deprecated
     public static MutableJsObject from(final @NotNull String json) {
-        return from(new StringReader(json));
+        return objectFrom(json);
+    }
+
+    public static MutableJsObject objectFrom(final @NotNull String json) {
+        return objectFrom(new StringReader(json));
+    }
+
+    public static MutableJsArray arrayFrom(final @NotNull String json) {
+        return arrayFrom(new StringReader(json));
     }
 
     public static MutableJsObject of(JsonObject jsonObject) {
         return jsonObject instanceof MutableJsObject ? (MutableJsObject) jsonObject : new MutableJsObject(jsonObject);
     }
 
-    public static JsonArray of(JsonArray jsonArray) {
-        return jsonArray instanceof MutableJsArray ? jsonArray : new MutableJsArray(jsonArray);
+    public static MutableJsArray of(JsonArray jsonArray) {
+        return jsonArray instanceof MutableJsArray ? (MutableJsArray) jsonArray : new MutableJsArray(jsonArray);
     }
 
     public static List<JsonValue> of(List<JsonValue> jsonList) {
