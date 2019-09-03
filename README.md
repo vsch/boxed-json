@@ -153,7 +153,7 @@ if the index part is empty `[]` or refers to 1 past the last element, 0-based in
 
 Any errors encountered will result in no modifications being performed. Check the returned value
 for validity with `.isValid()`. When chaining `evalSet()` operations all operations after the
-first failure will fail because the return value is will be an invalid JSON value. 
+first failure will fail because the return value is will be an invalid JSON value.
 
 `BoxedJson` class provides static methods for convenient conversions via `of()` to convert
 `JsonValue` instances and common Java types: `int`, `long`, `BigInteger`, `double`,
@@ -175,7 +175,7 @@ container's copy will reflect these changes. If you don't want the parent contai
 be modified, then before making any modifications to it, you need to make a deep copy via
 `MutableJson.copyOf()` or `BoxedJson.copyOf()`.
 
-## Why another JSON Java library 
+## Why another JSON Java library
 
 I needed to hack on Google Chrome Dev Tools WebSocket protocol to make JavaFX WebView debugging
 work for evaluating console expressions. This meant I needed to get and modify JSON messages
@@ -200,7 +200,7 @@ values. This was more fun and the result was worth the effort.
 
 ## What's Missing
 
-Tests! 
+Tests!
 
 I moved these classes out of my [Markdown Navigator] plugin for JetBrains IDEs into a separate
 module. Unfortunately, the tests I have for it are in [Kotlin] which is much more compact and
@@ -210,7 +210,7 @@ Java to Kotlin conversion but no reverse option. So it has to be a manual effort
 [GlassFish License]: https://javaee.github.io/glassfish/LICENSE
 [GlassFish Open Source Reference Implementation]: https://javaee.github.io/glassfish/
 [IntelliJ IDEA]: http://www.jetbrains.com/idea
-[Kotlin]: http://kotlinlang.org
+[Kotlin]: https://kotlinlang.org
 [LICENSE]: LICENSE.md
-[Markdown Navigator]: http://vladsch.com/product/markdown-navigator 
+[Markdown Navigator]: http://vladsch.com/product/markdown-navigator
 
