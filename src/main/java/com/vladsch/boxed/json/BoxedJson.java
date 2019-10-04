@@ -23,9 +23,9 @@ public class BoxedJson {
 
         switch (jsonValue.getValueType()) {
             case ARRAY:
-                return new BoxedJsArrayImpl((JsonArray) jsonValue);
+                return new BoxedJsArrayImpl(MutableJson.of((JsonArray) jsonValue));
             case OBJECT:
-                return new BoxedJsObjectImpl((JsonObject) jsonValue);
+                return new BoxedJsObjectImpl(MutableJson.of((JsonObject) jsonValue));
             case STRING:
                 return new BoxedJsStringLiteral((JsonString) jsonValue);
             case NUMBER:
@@ -40,11 +40,11 @@ public class BoxedJson {
     }
 
     public static BoxedJsArray boxedOf(final JsonArray jsonValue) {
-        return jsonValue instanceof BoxedJsArray ? (BoxedJsArray) jsonValue : jsonValue == null ? BoxedJsObject.HAD_NULL_ARRAY : new BoxedJsArrayImpl(jsonValue);
+        return jsonValue instanceof BoxedJsArray ? (BoxedJsArray) jsonValue : jsonValue == null ? BoxedJsObject.HAD_NULL_ARRAY : new BoxedJsArrayImpl(MutableJson.of(jsonValue));
     }
 
     public static BoxedJsObject boxedOf(final JsonObject jsonValue) {
-        return jsonValue instanceof BoxedJsObject ? (BoxedJsObject) jsonValue : jsonValue == null ? BoxedJsObject.HAD_NULL_OBJECT : new BoxedJsObjectImpl(jsonValue);
+        return jsonValue instanceof BoxedJsObject ? (BoxedJsObject) jsonValue : jsonValue == null ? BoxedJsObject.HAD_NULL_OBJECT : new BoxedJsObjectImpl(MutableJson.of(jsonValue));
     }
 
     public static BoxedJsNumber boxedOf(final JsonNumber jsonValue) {
