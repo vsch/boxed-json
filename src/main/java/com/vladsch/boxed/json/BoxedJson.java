@@ -144,19 +144,19 @@ public class BoxedJson {
     }
 
     public static BoxedJsArray of(JsonArray jsonValue) {
-        return jsonValue == null ? BoxedJsObject.HAD_NULL_ARRAY : jsonValue instanceof BoxedJsArray ? (BoxedJsArray) jsonValue : boxedOf(jsonValue);
+        return boxedOf(jsonValue);
     }
 
     public static BoxedJsObject of(JsonObject jsonValue) {
-        return jsonValue == null ? BoxedJsObject.HAD_NULL_OBJECT : jsonValue instanceof BoxedJsObject ? (BoxedJsObject) jsonValue : boxedOf(jsonValue);
+        return boxedOf(jsonValue);
     }
 
     public static BoxedJsNumber of(JsonNumber jsonValue) {
-        return jsonValue == null ? BoxedJsObject.HAD_NULL_NUMBER : jsonValue instanceof BoxedJsNumber ? (BoxedJsNumber) jsonValue : boxedOf(jsonValue);
+        return boxedOf(jsonValue);
     }
 
     public static BoxedJsString of(JsonString jsonValue) {
-        return jsonValue == null ? BoxedJsObject.HAD_NULL_STRING : jsonValue instanceof BoxedJsString ? (BoxedJsString) jsonValue : boxedOf(jsonValue);
+        return boxedOf(jsonValue);
     }
 
     public static BoxedJsValue of(final boolean jsonValue) {
