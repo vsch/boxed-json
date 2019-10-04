@@ -3,7 +3,7 @@
 
     <groupId>com.vladsch.boxed-json</groupId>
     <artifactId>boxed-json</artifactId>
-    <version>0.5.28</version>
+    <version>0.5.30</version>
     <name>Boxed Json</name>
     <description>
         Mutable JSON classes with easy search and manipulation in Java

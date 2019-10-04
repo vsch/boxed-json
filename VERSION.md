@@ -3,6 +3,7 @@
 [TOC levels=3,6]: # "Version History"
 
 ### Version History
+- [0.5.30](#0530)
 - [0.5.28](#0528)
 - [0.5.26](#0526)
 - [0.5.24](#0524)
@@ -16,6 +17,11 @@
 - [0.5.8](#058)
 - [0.5.6](#056)
 
+
+### 0.5.30
+
+* Fix: missing mutable wrapper for `JsonObject` and `JsonArray` when creating boxed versions for
+  some calls.
 
 ### 0.5.28
 
