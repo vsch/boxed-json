@@ -3,7 +3,12 @@ package com.vladsch.boxed.json;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import javax.json.*;
+import javax.json.Json;
+import javax.json.JsonArray;
+import javax.json.JsonNumber;
+import javax.json.JsonObject;
+import javax.json.JsonString;
+import javax.json.JsonValue;
 import java.io.InputStream;
 import java.io.Reader;
 import java.io.StringReader;
@@ -139,19 +144,19 @@ public class BoxedJson {
     }
 
     public static BoxedJsArray of(JsonArray jsonValue) {
-        return jsonValue == null ? BoxedJsObject.HAD_NULL_ARRAY : boxedOf(jsonValue instanceof BoxedJsArray && ((BoxedJsArray) jsonValue).isValid() ? of((JsonArray) ((BoxedJsArray) jsonValue).jsonValue()) : jsonValue);
+        return jsonValue == null ? BoxedJsObject.HAD_NULL_ARRAY : jsonValue instanceof BoxedJsArray ? (BoxedJsArray) jsonValue : boxedOf(jsonValue);
     }
 
     public static BoxedJsObject of(JsonObject jsonValue) {
-        return jsonValue == null ? BoxedJsObject.HAD_NULL_OBJECT : boxedOf(jsonValue instanceof BoxedJsObject && ((BoxedJsObject) jsonValue).isValid() ? of((JsonObject) ((BoxedJsObject) jsonValue).jsonValue()) : jsonValue);
+        return jsonValue == null ? BoxedJsObject.HAD_NULL_OBJECT : jsonValue instanceof BoxedJsObject ? (BoxedJsObject) jsonValue : boxedOf(jsonValue);
     }
 
     public static BoxedJsNumber of(JsonNumber jsonValue) {
-        return jsonValue == null ? BoxedJsObject.HAD_NULL_NUMBER : boxedOf(jsonValue instanceof BoxedJsNumber && ((BoxedJsNumber) jsonValue).isValid() ? of((JsonNumber) ((BoxedJsNumber) jsonValue).jsonValue()) : jsonValue);
+        return jsonValue == null ? BoxedJsObject.HAD_NULL_NUMBER : jsonValue instanceof BoxedJsNumber ? (BoxedJsNumber) jsonValue : boxedOf(jsonValue);
     }
 
     public static BoxedJsString of(JsonString jsonValue) {
-        return jsonValue == null ? BoxedJsObject.HAD_NULL_STRING : boxedOf(jsonValue instanceof BoxedJsString && ((BoxedJsString) jsonValue).isValid() ? of((JsonString) ((BoxedJsString) jsonValue).jsonValue()) : jsonValue);
+        return jsonValue == null ? BoxedJsObject.HAD_NULL_STRING : jsonValue instanceof BoxedJsString ? (BoxedJsString) jsonValue : boxedOf(jsonValue);
     }
 
     public static BoxedJsValue of(final boolean jsonValue) {
@@ -186,6 +191,7 @@ public class BoxedJson {
      * Deep copy of the passed JsonValue to mutable boxed json
      *
      * @param jsonValue json value for which to create a deep copy, literal values are return simply wrapped
+     *
      * @return boxed mutable deep copy of jsonValue
      */
     public static JsonValue copyOf(JsonValue jsonValue) {
@@ -318,7 +324,8 @@ public class BoxedJson {
      * either the last looked up element or
      *
      * @param jsValue object to query
-     * @param path path to evaluate
+     * @param path    path to evaluate
+     *
      * @return value at path (check for validity)
      */
     public static @NotNull BoxedJsValue eval(BoxedJsValue jsValue, final String path) {
@@ -367,11 +374,12 @@ public class BoxedJson {
      * '{ "name": "abc", "arr": [1,2,3] }'.evalSet("result.value.set[]", JsonValue.NULL) will result in
      * '{ "name": "abc", "arr": [1,2,3], "result" : { "value": { "set":[ null ] } } }'
      *
-     * @param jsValue object to query and set
+     * @param jsValue   object to query and set
      * @param path      p
      * @param jsonValue value to set
+     *
      * @return result of setting the final part, array returns value, object returns value for new parts, or old value at part.
-     * If result.isValid() is false then no changes were made because of errors
+     *         If result.isValid() is false then no changes were made because of errors
      */
     public static @NotNull BoxedJsValue evalSet(BoxedJsValue jsValue, final String path, JsonValue jsonValue) {
         Object[] parts = parseEvalPath(path, true);
