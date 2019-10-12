@@ -44,6 +44,13 @@ public class BoxedJson {
         }
     }
 
+    public static boolean allValid(BoxedJsValue ... values) {
+        for (BoxedJsValue value : values) {
+            if (!value.isValid()) return false;
+        }
+        return true;
+    }
+
     public static BoxedJsArray boxedOf(final JsonArray jsonValue) {
         return jsonValue instanceof BoxedJsArray ? (BoxedJsArray) jsonValue : jsonValue == null ? BoxedJsObject.HAD_NULL_ARRAY : new BoxedJsArrayImpl(MutableJson.of(jsonValue));
     }
