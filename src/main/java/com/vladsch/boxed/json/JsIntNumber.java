@@ -23,15 +23,15 @@ public final class JsIntNumber extends JsNumber {
     }
 
     public long longValue() {
-        return (long) this.num;
+        return this.num;
     }
 
     public long longValueExact() {
-        return (long) this.num;
+        return this.num;
     }
 
     public double doubleValue() {
-        return (double) this.num;
+        return this.num;
     }
 
     public BigDecimal bigDecimalValue() {

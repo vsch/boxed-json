@@ -25,7 +25,7 @@ public abstract class JsNumber implements JsonNumber {
     }
 
     public static JsNumber of(float value) {
-        return new JsBigDecimalNumber(BigDecimal.valueOf((double)value));
+        return new JsBigDecimalNumber(BigDecimal.valueOf(value));
     }
 
     public static JsNumber of(BigDecimal value) {

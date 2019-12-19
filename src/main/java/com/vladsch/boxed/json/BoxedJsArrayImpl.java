@@ -44,7 +44,7 @@ public class BoxedJsArrayImpl extends BoxedJsArrayBase implements BoxedJsArray {
             return myJsonArray.equals(((BoxedJsArrayImpl) o).myJsonArray);
         }
         if ((o instanceof JsonArray)) {
-            return myJsonArray.equals((JsonArray) o);
+            return myJsonArray.equals(o);
         }
         return false;
     }

@@ -90,7 +90,7 @@ public class BoxedJsObjectImpl extends BoxedJsObjectBase {
             return myJsonObject.equals(((BoxedJsObjectImpl) o).myJsonObject);
         }
         if ((o instanceof JsonArray)) {
-            return myJsonObject.equals((JsonArray) o);
+            return myJsonObject.equals(o);
         }
         return false;
     }

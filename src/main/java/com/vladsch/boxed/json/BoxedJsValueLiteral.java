@@ -37,6 +37,6 @@ public class BoxedJsValueLiteral implements BoxedJsValue {
     }
 
     public boolean equals(Object obj) {
-        return obj instanceof JsonValue && myJsonValue.equals(((JsonValue) obj));
+        return obj instanceof JsonValue && myJsonValue.equals(obj);
     }
 }

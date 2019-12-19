@@ -54,12 +54,12 @@ public class MutableJsMap<K> extends AbstractMap<K, JsonValue> {
         switch (jsonValue.getValueType()) {
             case ARRAY:
                 if (jsonValue instanceof MutableJsArray) return jsonValue;
-                jsonValue = (JsonValue) new MutableJsArray((JsonArray) jsonValue);
+                jsonValue = new MutableJsArray((JsonArray) jsonValue);
                 break;
 
             case OBJECT:
                 if (jsonValue instanceof MutableJsObject) return jsonValue;
-                jsonValue = (JsonValue) new MutableJsObject((JsonObject) jsonValue);
+                jsonValue = new MutableJsObject((JsonObject) jsonValue);
                 break;
 
             case STRING:
