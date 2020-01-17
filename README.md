@@ -9,7 +9,7 @@ under the same dual license as the original [GlassFish License], which is duplic
 repository [LICENSE].
 
 [![Build status](https://travis-ci.org/vsch/boxed-json.svg?branch=master)](https://travis-ci.org/vsch/boxed-json)
-[![Maven Central status](https://img.shields.io/maven-central/v/com.vladsch.boxed-json/boxed-json.svg)](https://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.vladsch.boxed-json%22)
+[![Maven Central status](https://img.shields.io/maven-central/v/com.vladsch.boxed-json/boxed-json.svg)](https://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.vladsch.boxed-json%22)<!-- @IGNORE PREVIOUS: anchor -->
 
 ### Requirements
 
@@ -125,11 +125,11 @@ For example, to get the `frameId` value from
 operation:
 
 ```java
-import com.vladsch.idea.multimarkdown.util.json.*;
+import com.vladsch.boxed.json.*;
 
 class Test {
     static void main(String[] args) {
-        BoxedJsValue json = BoxedJson.from("{\"method\":\"Page.frameStartedLoading\",\"params\":{\"frameId\":\"0.1\"}}");
+        BoxedJsValue json = BoxedJson.objectFrom("{\"method\":\"Page.frameStartedLoading\",\"params\":{\"frameId\":\"0.1\"}}");
 
         BoxedJsString frameId = json.eval("params.frameId").asJsString();
         if (frameId.isValid() && frameId.getString().equals("0.1")) {
