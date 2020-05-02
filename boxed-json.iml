@@ -12,5 +12,8 @@
     <orderEntry type="library" name="org.glassfish:javax.json:1.1.4" level="project" />
     <orderEntry type="library" name="org.jetbrains:annotations" level="project" />
     <orderEntry type="library" name="log4j" level="project" />
+    <orderEntry type="library" scope="TEST" name="junit" level="project" />
+    <orderEntry type="library" scope="TEST" name="flexmark-util" level="project" />
+    <orderEntry type="library" scope="TEST" name="hamcrest-core-1.3" level="application" />
   </component>
 </module>

@@ -192,5 +192,11 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.vladsch.flexmark</groupId>
+            <artifactId>flexmark-util-misc</artifactId>
+            <version>0.61.26</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 </project>
